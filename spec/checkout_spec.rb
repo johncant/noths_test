@@ -18,8 +18,8 @@ describe NothsTest::Checkout do
 
   let :pricing_rules do
     [
-      {:rule_type => :discount_above_price, :price => 60, :discount => 0.1},
-      {:rule_type => :bulk_price, :product => "001", :qty => 2, :price => 8.50}
+      {:rule_type => :bulk_price, :product_code => "001", :qty => 2, :price => 8.50},
+      {:rule_type => :discount_above_price, :price => 60, :discount => 0.1}
     ]
   end
 
@@ -37,6 +37,11 @@ describe NothsTest::Checkout do
     end
 
     checkout.total
+  end
+
+
+  it "returns 0 if no items were scanned" do
+    total_for.should == 0
   end
 
   it "returns the price for a single item" do
